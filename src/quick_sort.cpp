@@ -22,6 +22,13 @@ namespace assignment {
 
     // производим разбиение относительно опорного элемента ...  partition ...
     // рекурсивно повторяем процедуру над левой и правой частью ...
+
+    partition(arr, start,stop, pivot_index);
+    if(start < stop) {
+      int num = partition(arr, start,stop, pivot_index);
+      quick_sort(arr, start,num-1);
+      quick_sort(arr,num+1,stop);
+    }
   }
 
 }  // namespace assignment

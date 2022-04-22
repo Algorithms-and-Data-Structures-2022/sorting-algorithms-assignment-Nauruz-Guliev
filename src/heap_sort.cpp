@@ -8,11 +8,12 @@ namespace assignment {
   void HeapSort::Sort(std::vector<int>& arr) const {
 
     // строим двоичную кучу ... BuildMaxHeap ...
-
+    BuildMaxHeap(arr);
     // обходим элементы кучи с конца до корня (не включительно)
     for (int index = static_cast<int>(arr.size()) - 1; index > 0; index--) {
       // обмениваем местами корень (максимальный элемент) и последний элемент кучи ... std::swap ...
       // спускаем новый корневой узел вниз ... Heapify ...
+      std::swap(arr[0], arr[index]);
     }
   }
 
@@ -26,6 +27,9 @@ namespace assignment {
     const int size = static_cast<int>(arr.size());
 
     // Напишите здесь свой код ...
+    for(int i = size/2-1; i>=0;i--) {
+      Heapify(arr, size,i);
+    }
   }
 
   void HeapSort::Heapify(std::vector<int>& arr, int heap_size, int index) {

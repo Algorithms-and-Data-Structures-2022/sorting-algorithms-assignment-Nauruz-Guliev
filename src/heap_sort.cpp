@@ -14,6 +14,7 @@ namespace assignment {
       // обмениваем местами корень (максимальный элемент) и последний элемент кучи ... std::swap ...
       // спускаем новый корневой узел вниз ... Heapify ...
       std::swap(arr[0], arr[index]);
+      Heapify(arr, index, 0);
     }
   }
 
@@ -41,18 +42,22 @@ namespace assignment {
       // вычисляем индексы потомков для текущего элемента
       const int left_child = LeftChild(index);
       const int right_child = RightChild(index);
-
       // поиск наибольшего элемента среди текущего элемента и его потомков ...
-
+      if (left_child < heap_size && arr[left_child] > arr[largest]){
+        largest = left_child;
+      }
+      if (right_child <heap_size && arr[right_child] >arr[largest]) {
+        largest = right_child;
+      }
       // если текущий элемент больше своих потомков, то он находится на правильном месте (свойство макс. кучи)
       if (largest == index) {
         return;  // завершаем спуск
       }
 
       // обмениваем местами текущий элемент с его потомком ... std::swap ...
-
+      std::swap(arr[index], arr[largest]);
       // продолжаем спуск c нового места (после операции обмена местами)
-      index = -1 /* здесь какая-то ошибка ... */;
+      index = largest;
     }
   }
 

@@ -17,13 +17,16 @@ namespace assignment {
 
     // слияния подмассивов (пока не достигли конца одного из подмассивов)
     while (left_offset <= middle && right_offset <= stop) {
-      if(arr[left_offset] < arr[right_offset]) {
-        buf[start] = arr[buf_offset];
-      }
       // копируем элемент с наименьшим значением в буфер ...
+      if (arr[left_offset] > arr[right_offset]) {
+        buf[buf_offset] = arr[right_offset++];
 
+      } else {
+        buf[buf_offset] = arr[left_offset++];
+
+      }
       // перемещаем текущую позицию вставки в буфер
-      buf_offset+=1;
+      buf_offset += 1;
     }
 
     // сливаем остатки подмассивов (останутся элементы только одного из двух подмассивов)
@@ -33,12 +36,12 @@ namespace assignment {
     }
 
     // реализуйте сливание остатков правого подмассива ...
-    for (/* ... */; right_offset <= middle; right_offset++) {
+    for (; right_offset <= stop; right_offset++) {
       buf[buf_offset] = arr[right_offset];
       buf_offset += 1;
     }
     // копируем результат слияния подмассивов из буфера в оригинальный массив ... std::copy или цикл for ...
-    for ( int i = start; i<= stop; i++) {
+    for (int i = 0; i <= stop; i ++ ){
       arr[i] = buf[i];
     }
   }

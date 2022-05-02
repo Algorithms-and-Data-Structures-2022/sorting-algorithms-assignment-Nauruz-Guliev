@@ -9,7 +9,7 @@ namespace assignment {
   int linear_search(const std::vector<int>& arr, int index) {
 
     // итерация всех предыдущих элементов [0, index - 1] (они находятся в отсортированном порядке)
-    for (int curr_pos = 0 ;/* ... */ curr_pos < index /* условие ... */;curr_pos++ /* обновление curr_pos ... */) {
+    for (int curr_pos = 0; /* ... */ curr_pos < index /* условие ... */; curr_pos++ /* обновление curr_pos ... */) {
       if (arr[curr_pos] >= arr[index]) {
         return curr_pos;
       }
@@ -59,12 +59,10 @@ namespace assignment {
       const int ins_index = searcher_(arr, index);
       if (ins_index != index) {
         int elem_to_insert = arr[index];
-        int i = index -1;
-        while (i >=ins_index) {
-          arr[i+1] = arr[i];
-          i--;
+        for (int i = index - 1; i >= ins_index; --i) {
+          arr[i + 1] = arr[i];
         }
-        arr[i+1] = elem_to_insert;
+        arr[ins_index] = elem_to_insert;
       }
 
       // если индекс вставки не совпадает с текущей позицией элемента,

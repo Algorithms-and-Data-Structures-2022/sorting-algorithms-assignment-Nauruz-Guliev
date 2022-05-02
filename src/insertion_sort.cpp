@@ -41,7 +41,7 @@ namespace assignment {
         start = middle + 1;
       }
       // обновляем середину области поиска
-      middle = middle_of(-1, -1);  // здесь что-то не так ...
+      middle = middle_of(start, stop);  // здесь что-то не так ...
     }
 
     // в конечном счете возвращаем начало последней области поиска
@@ -62,7 +62,7 @@ namespace assignment {
         for (int i = index - 1; i >= ins_index; --i) {
           arr[i + 1] = arr[i];
         }
-        arr[ins_index] = elem_to_insert;
+        std::swap(arr[ins_index], elem_to_insert);
       }
 
       // если индекс вставки не совпадает с текущей позицией элемента,

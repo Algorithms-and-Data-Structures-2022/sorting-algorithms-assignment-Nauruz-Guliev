@@ -13,18 +13,16 @@ namespace assignment {
   void QuickSort::quick_sort(std::vector<int>& arr, int start, int stop) const {
     assert(start >= 0);
 
-    if (start >= stop) {
+    if (stop - start < 2) {
       return;
     }
 
     // вычисляем индекс опорного элемента ... median_of_three ...
     int pivot_index = median_of_three(arr, start, stop);
+    quick_sort(arr, start, pivot_index);
+    quick_sort(arr, pivot_index, stop);
     // производим разбиение относительно опорного элемента ...  partition ...
     // рекурсивно повторяем процедуру над левой и правой частью ...
-
-    int num = partition(arr, start, stop, pivot_index);
-    quick_sort(arr, start, num - 1);
-    quick_sort(arr, num + 1, stop);
   }
 
 }  // namespace assignment
